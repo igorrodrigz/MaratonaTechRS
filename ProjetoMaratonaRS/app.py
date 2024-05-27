@@ -40,20 +40,19 @@ def obter_nivel_rio(url):
 def construir_mensagem(nivel_rio):
     if nivel_rio > 8.5 < 10:
         nivel_alerta = "Amarelo"
-        return f"Atenção, risco baixo de enchente. Nível do rio: {nivel_rio}m \nNível de alerta: {nivel_alerta}. {Amarelo}\nMantenha-se informado e evite áreas vulneráveis. Para mais informações : {url_nivel_rio}."
+        return f"Atenção, risco baixo de enchente. Nível do rio: {nivel_rio}m \nNível de alerta: {nivel_alerta}. Nessa cota as áreas atingidas são ribeirinhas e vegetação. {Amarelo}\nMantenha-se informado e evite áreas vulneráveis. Para mais informações : {url_nivel_rio}."
     elif nivel_rio > 10 < 12:
         nivel_alerta = "Laranja"
-        return f"Atenção, aviso de risco moderado de enchente. Nível do rio: {nivel_rio}m \nNível de alerta: {nivel_alerta}. {Laranja}\nFique atendo aos boletins metereológicos e evite áreas baixas. "
-    elif nivel_rio > 12 < 14:
+        return f"Atenção, aviso de risco moderado de enchente. Nível do rio: {nivel_rio}m \nNível de alerta: {nivel_alerta}. Bairros atingidos parcialmente: Mascarenhas de Morais, Bela Vista, Francisca Tarrago, Cabo Luiz Quevedo,  Alexandre Zachia, Santana, Santo Antônio; e minimamente: Rio Brando, Cidade Nova e Jóquei Clube. {Laranja}\nFique atendo aos boletins metereológicos e evite áreas baixas. Para mais informações : {url_nivel_rio}."
+    elif nivel_rio > 12 < 13:
         nivel_alerta = "Vermelho"
-        return f"Atenção, alerta de enchente! Nível do rio: {nivel_rio}m \nNível de alerta: {nivel_alerta}. {Vermelho}\nFique atento aos avisos e prepare-se para possível evacuação."
-    elif nivel_rio > 14 > 16:
+        return f"Atenção, alerta de enchente! Nível do rio: {nivel_rio}m \nNível de alerta: {nivel_alerta}. Bairros atingidos totalmente: Mascarenha de Morais; e minimamente: Bela Vista, Francisca Tarrago, Cabo Luiz Quevedo, Alexandre Zachia, Santana, Santo Antônio e Jóquei Clube. {Vermelho}\nFique atento aos avisos e prepare-se para possível evacuação. Para mais informações : {url_nivel_rio}."
+    elif nivel_rio > 13 < 14:
         nivel_alerta = "Marrom"
-
-        return f"URGENTE! Enchente severa na região. Nível do rio: {nivel_rio}m  \nNível de alerta: {nivel_alerta}. {Marrom}\nProcure abrigo seguro e siga orientações das autoridades."
-    elif nivel_rio < 16:
+        return f"URGENTE! Enchente severa na região. Nível do rio: {nivel_rio}m  \nNível de alerta: {nivel_alerta}. Bairros atingidos totalmente: Mascarenha de Morais; e parcialmente: Bela Vista, Francisca Tarrago, Cabo Luiz Quevedo, Alexandre Zachia, Santana, Santo Antônio e Jóquei Clube. {Marrom}\nProcure abrigo seguro e siga orientações das autoridades. Para mais informações : {url_nivel_rio}.""
+    elif nivel_rio > 14:
         nivel_alerta = "Preto"
-        return f"Alerta máximo, alerta máximo. Nível do rio: {nivel_rio}m \nNivel de alerta: {nivel_alerta}. {Marrom}\nProcure abrigo, siga orientações."
+        return f"Alerta máximo, alerta máximo. Nível do rio: {nivel_rio}m \nNivel de alerta: {nivel_alerta}. Bairros atingidos totalmente: Mascarenha de Morais e Francisca Tarrago; e parcialmente: Bela Vista, Cabo Luiz Quevedo, Alexandre Zachia, Santana, Santo Antônio e Jóquei Clube {Marrom}\nProcure abrigo, siga orientações. Para mais informações : {url_nivel_rio}."
     return "Nível do rio não atingiu o nível de alerta."
 
 # Função para enviar mensagens
