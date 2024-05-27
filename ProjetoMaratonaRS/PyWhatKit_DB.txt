@@ -1,0 +1,105 @@
+Date: 24/5/2024
+Time: 19:43
+Phone Number: +55 47 84137785
+Message: Atenção, essa mensagem é um alerta de Inundação!
+--------------------
+Date: 24/5/2024
+Time: 19:44
+Phone Number: +55 55 96347144
+Message: Atenção, essa mensagem é um alerta de Inundação!
+--------------------
+Date: 24/5/2024
+Time: 19:45
+Phone Number: +55 47 84137785
+Message: Atenção, essa mensagem é um alerta de Inundação!
+--------------------
+Date: 24/5/2024
+Time: 19:45
+Phone Number: +55 55 96347144
+Message: Atenção, essa mensagem é um alerta de Inundação!
+--------------------
+Date: 24/5/2024
+Time: 19:46
+Phone Number: +55 51 96078380
+Message: Atenção, essa mensagem é um alerta de Inundação!
+--------------------
+Date: 24/5/2024
+Time: 19:47
+Phone Number: +55 55 91167463
+Message: Atenção, essa mensagem é um alerta de Inundação!
+--------------------
+Date: 24/5/2024
+Time: 19:47
+Phone Number: +55 55 97259074
+Message: Atenção, essa mensagem é um alerta de Inundação!
+--------------------
+Date: 24/5/2024
+Time: 21:36
+Phone Number: +55 47 84137785
+Message: Atenção, essa mensagem é um alerta de Inundação! Nível de risco: Amarelo
+--------------------
+Date: 24/5/2024
+Time: 21:37
+Phone Number: +55 47 84137785
+Message: Atenção, essa mensagem é um alerta de Inundação! Nível de risco: Amarelo
+--------------------
+Date: 24/5/2024
+Time: 21:59
+Phone Number: +55 47 84137785
+Message: Atenção, essa mensagem é um alerta de Inundação! Nível de risco: Amarelo
+--------------------
+Date: 24/5/2024
+Time: 22:1
+Phone Number: +55 55 96347144
+Message: Atenção, essa mensagem é um alerta de Inundação! Nível de risco: Amarelo
+--------------------
+Date: 24/5/2024
+Time: 22:10
+Phone Number: +55 47 84137785
+Message: Atenção, essa mensagem é um alerta de Inundação! Nível de risco: Amarelo, previsão de area afetada pela cheia nos bairros Bairro Anita, Mascarenhas de Moraes, Bela Vista, Região Ribeirinha. Estimativa de chegada da água: Menos de duas horas !
+--------------------
+Date: 24/5/2024
+Time: 23:53
+Phone Number: +55 47 84137785
+Message: Atenção, essa mensagem é um alerta de Inundação! Nível do rio: 9.8m Nível de alerta: Amarelo. Bairro afetados: Bairro 1, Bairro 2, Bairro 3, Bairro 5. Preparem seus documentos, roupas e pertences emergenciais e dirijam-se para os abrigos dos seus bairros.
+--------------------
+Date: 25/5/2024
+Time: 23:9
+Phone Number: +55 47 84137785
+Message: Atenção, risco baixo de enchente. Nível do rio: 9.8m Nível de alerta: Amarelo. Pequenos alagamentos possíveis. Mantenha-se informado e evite áreas vulneráveis.
+--------------------
+Date: 25/5/2024
+Time: 23:20
+Phone Number: +55 47 84137785
+Message: Atenção, risco baixo de enchente. Nível do rio: 9.8m Nível de alerta: Amarelo. Pequenos alagamentos possíveis. Mantenha-se informado e evite áreas vulneráveis.
+--------------------
+Date: 26/5/2024
+Time: 0:8
+Phone Number: +55 47 84137785
+Message: Atenção, risco baixo de enchente. Nível do rio: 9.8m Nível de alerta: Amarelo. Pequenos alagamentos possíveis. Mantenha-se informado e evite áreas vulneráveis. Para mais informações : http://127.0.0.1:5500/AlertaRioUruguai/index.html.
+--------------------
+Date: 26/5/2024
+Time: 0:10
+Phone Number: +55 47 84137785
+Message: Atenção, risco baixo de enchente. Nível do rio: 9.8m Nível de alerta: Amarelo. Pequenos alagamentos possíveis. Mantenha-se informado e evite áreas vulneráveis. Para mais informações : http://127.0.0.1:5500/AlertaRioUruguai/index.html.
+--------------------
+Date: 26/5/2024
+Time: 0:10
+Phone Number: +55 55 96347144
+Message: Atenção, risco baixo de enchente. Nível do rio: 9.8m Nível de alerta: Amarelo. Pequenos alagamentos possíveis. Mantenha-se informado e evite áreas vulneráveis. Para mais informações : http://127.0.0.1:5500/AlertaRioUruguai/index.html.
+--------------------
+Date: 26/5/2024
+Time: 0:11
+Phone Number: +55 51 96078380
+Message: Atenção, risco baixo de enchente. Nível do rio: 9.8m Nível de alerta: Amarelo. Pequenos alagamentos possíveis. Mantenha-se informado e evite áreas vulneráveis. Para mais informações : http://127.0.0.1:5500/AlertaRioUruguai/index.html.
+--------------------
+Date: 26/5/2024
+Time: 0:12
+Phone Number: +55 55 91167463
+Message: Atenção, risco baixo de enchente. Nível do rio: 9.8m Nível de alerta: Amarelo. Pequenos alagamentos possíveis. Mantenha-se informado e evite áreas vulneráveis. Para mais informações : http://127.0.0.1:5500/AlertaRioUruguai/index.html.
+--------------------
+Date: 26/5/2024
+Time: 0:13
+Phone Number: +55 55 97259074
+Message: Atenção, risco baixo de enchente. Nível do rio: 9.8m Nível de alerta: Amarelo. Pequenos alagamentos possíveis. Mantenha-se informado e evite áreas vulneráveis. Para mais informações : http://127.0.0.1:5500/AlertaRioUruguai/index.html.
+--------------------
