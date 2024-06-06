@@ -4,87 +4,98 @@ import time
 import pywhatkit
 import openpyxl
 
-#Mapeamento de zonas de impacto
-Amarelo = "Pequenos alagamentos possíveis. "
-Laranja = "Inundações podem ocorrer."
-Vermelho = "Alta probabilidade de inundações na sua área."
-Marrom = "Evacuação imediata necessária."
-Preto = "ALERTA MÁXIMO"
+# Mapeamento das zonas de impacto (cores)
+ALERTAS = {
+    "Amarelo": "Pequenos alagamentos possíveis,",
+    "Laranja": "Inundações podem ocorrer.",
+    "Vermelho": "Alta probabilidade de inundações na sua área.",
+    "Marrom": "Evacuação imediata necessária.",
+    "Preto": "ALERTA MAXIMO"
+}
 
-#Scraping do nível do rio
+# Scraping do nível do rio
 def obter_nivel_rio(url):
     try:
-        response = requests.get(url)
-        response.raise_for_status()  # Verifica se a requisição foi bem-sucedida
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+        }
+        response = requests.get(url, headers=headers, timeout=10)
+        response.raise_for_status() # Verificação se a requisição foi bem-sucedida
         soup = BeautifulSoup(response.text, 'html.parser')
 
-        # Tag identificadora do nvl do rio
-        nivel_rio_tag = soup.find('div', {'id': 'nivel-rio'})
-        if nivel_rio_tag:
-            nivel_rio = nivel_rio_tag.text.strip()
+        # Tag identificadora do nível do rio pelo id valor_medicao
+        nivel_rio_tag = soup.find('input', {'id': 'valor_medicao'})
+        if nivel_rio_tag and 'value' in nivel_rio_tag.attrs:
+            nivel_rio_text = nivel_rio_tag['value'].strip()
+            nivel_rio = nivel_rio_text.replace(',','.').strip()
             try:
-                nivel_rio = float(nivel_rio)
+                return float(nivel_rio)
             except ValueError:
                 print("Não foi possível converter o nível do rio para número.")
-                nivel_rio = None
-            return nivel_rio
+                return None
         else:
             print("Não foi possível encontrar o nível do rio na página.")
-            return "None"
+            return None
     except requests.exceptions.RequestException as e:
         print(f"Erro ao obter nível do rio: {e}")
-        return "None"
-
+        return None
 
 # Função para construir a mensagem de alerta
-def construir_mensagem(nivel_rio):
-    if nivel_rio > 8.5 < 10:
+def construir_mensagem(nivel_rio, url):
+    if nivel_rio is None:
+        return "Erro ao obter o nível do rio, não foi possível gerar a mensagem de alerta"
+
+    if 8.5 < nivel_rio <= 10:
         nivel_alerta = "Amarelo"
-        return f"Atenção, risco baixo de enchente. Nível do rio: {nivel_rio}m \nNível de alerta: {nivel_alerta}. Nessa cota as áreas atingidas são ribeirinhas e vegetação. {Amarelo}\nMantenha-se informado e evite áreas vulneráveis. Para mais informações : {url_nivel_rio}."
-    elif nivel_rio > 10 < 12:
+    elif 10 < nivel_rio <= 12:
         nivel_alerta = "Laranja"
-        return f"Atenção, aviso de risco moderado de enchente. Nível do rio: {nivel_rio}m \nNível de alerta: {nivel_alerta}. Bairros atingidos parcialmente: Mascarenhas de Morais, Bela Vista, Francisca Tarrago, Cabo Luiz Quevedo,  Alexandre Zachia, Santana, Santo Antônio; e minimamente: Rio Brando, Cidade Nova e Jóquei Clube. {Laranja}\nFique atendo aos boletins metereológicos e evite áreas baixas. Para mais informações : {url_nivel_rio}."
-    elif nivel_rio > 12 < 13:
+    elif 12 < nivel_rio <= 13:
         nivel_alerta = "Vermelho"
-        return f"Atenção, alerta de enchente! Nível do rio: {nivel_rio}m \nNível de alerta: {nivel_alerta}. Bairros atingidos totalmente: Mascarenha de Morais; e minimamente: Bela Vista, Francisca Tarrago, Cabo Luiz Quevedo, Alexandre Zachia, Santana, Santo Antônio e Jóquei Clube. {Vermelho}\nFique atento aos avisos e prepare-se para possível evacuação. Para mais informações : {url_nivel_rio}."
-    elif nivel_rio > 13 < 14:
+    elif 13 < nivel_rio <= 14:
         nivel_alerta = "Marrom"
-        return f"URGENTE! Enchente severa na região. Nível do rio: {nivel_rio}m  \nNível de alerta: {nivel_alerta}. Bairros atingidos totalmente: Mascarenha de Morais; e parcialmente: Bela Vista, Francisca Tarrago, Cabo Luiz Quevedo, Alexandre Zachia, Santana, Santo Antônio e Jóquei Clube. {Marrom}\nProcure abrigo seguro e siga orientações das autoridades. Para mais informações : {url_nivel_rio}.""
     elif nivel_rio > 14:
         nivel_alerta = "Preto"
-        return f"Alerta máximo, alerta máximo. Nível do rio: {nivel_rio}m \nNivel de alerta: {nivel_alerta}. Bairros atingidos totalmente: Mascarenha de Morais e Francisca Tarrago; e parcialmente: Bela Vista, Cabo Luiz Quevedo, Alexandre Zachia, Santana, Santo Antônio e Jóquei Clube {Marrom}\nProcure abrigo, siga orientações. Para mais informações : {url_nivel_rio}."
-    return "Nível do rio não atingiu o nível de alerta."
+    else:
+        return "Nível do rio não atingiu o nível de alerta."
 
-# Função para enviar mensagens
+    return (
+        f"Atenção, risco de enchente. Nível do rio: {nivel_rio}m\n"
+        f"Nível de alerta: {nivel_alerta}, {ALERTAS[nivel_alerta]}\n"
+        f"Mantenha-se informado e evite áreas vulneráveis. Para mais informações: {url}."
+    )
+
+#Função para enviar mensagens
 def enviar_mensagem(numero_contato, mensagem):
     try:
-        pywhatkit.sendwhatmsg_instantly(numero_contato, mensagem, 30, tab_close=False)
+        pywhatkit.sendwhatmsg_instantly(numero_contato, mensagem, 30, tab_close=True)
         print(f"Mensagem enviada para {numero_contato}")
     except Exception as e:
         print(f"Erro ao enviar mensagem para {numero_contato}: {e}")
 
-
 # Carregar a planilha com os contatos
 try:
-    lista_contatos_dc = openpyxl.load_workbook('ContatosCidades.xlsx')
-    planilha = lista_contatos_dc['Plan1']
+    lista_contatos_dc = openpyxl.load_workbook('../ContatosCidades.xlsx')
+    planilha = lista_contatos_dc['plan1']
 except Exception as e:
-    print(f"Erro ao carregar a planilha: {e}")
+    print(f"erro ao carregar a planilha: {e}")
     exit()
 
-# URL do site que fornece o nível do rio
-url_nivel_rio = "http://127.0.0.1:5500/AlertaRioUruguai/index.html"
+# URL do site que fornece o nível do rio (alerta.ai)
+url_nivel_rio = "http://baseconsultoria.com.br/alertaai/?medida=11.5"
 nivel_rio = obter_nivel_rio(url_nivel_rio)
 
-# Iterar sobre as linhas da planilha e enviar mensagens
-for linha in planilha.iter_rows(min_row=2, min_col=1, values_only=True):
-    numero_contato = linha[0]  # Primeira coluna, índice 0
+# Verificar se o nível do rio foi obtido
+if nivel_rio is not None:
+    #iterar sobre as linhas da planilha para enviar mensagens
+    for linha in planilha.iter_rows(min_row=2, min_col=1, values_only=True):
+        numero_contato = linha[0] # primeira coluna, indice 0 (cabeçalho)
 
-    # Verificar se o número de telefone não é nulo e está no formato correto
-    if numero_contato and isinstance(numero_contato, str) and numero_contato.startswith('+'):
-        mensagem = construir_mensagem(nivel_rio)
-        enviar_mensagem(numero_contato, mensagem)
-        time.sleep(15)  # Aguardar um intervalo entre as mensagens
-    else:
-        print("Número de telefone inválido ou vazio.")
-
+        #Verificar se o número de telefone não é nulo e está no formato correto
+        if numero_contato and isinstance(numero_contato, str) and numero_contato.startswith('+'):
+            mensagem = construir_mensagem(nivel_rio, url_nivel_rio)
+            enviar_mensagem(numero_contato, mensagem)
+            time.sleep(15)#Aguardar intervalo de carregamento da janela
+        else:
+            print("Número de telefone inválido ou vazio")
+else:
+    print("Erro ao obter o nível do rio, não foi possível enviar mensagens de alerta.")
