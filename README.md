@@ -28,7 +28,6 @@ Obtém o nível do rio a partir de uma página web especificada pela URL.
 
 ```python
 def obter_nivel_rio(url):
-    # Tag identificadora do nível do rio pelo id valor_medicao
         nivel_rio_tag = soup.find('input', {'id': 'valor_medicao'})
         if nivel_rio_tag and 'value' in nivel_rio_tag.attrs:
             nivel_rio_text = nivel_rio_tag['value'].strip()
